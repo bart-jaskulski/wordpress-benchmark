@@ -1,0 +1,24 @@
+From 51376133919669f31e3e65696ac8d55082ba51b0 Mon Sep 17 00:00:00 2001
+From: Bart Jaskulski <bjaskulski@protonmail.com>
+Date: Mon, 12 Feb 2024 06:57:53 +0100
+Subject: [PATCH] Add filename to the output
+
+---
+ src/App/Info.php | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/src/App/Info.php b/src/App/Info.php
+index 491f0b4..0e751da 100644
+--- a/src/App/Info.php
++++ b/src/App/Info.php
+@@ -26,6 +26,7 @@ class Info extends ProfileCommand
+     {
+         $profileData = $this->getProfileData();
+         $stats = $this->getStats();
++        $this->response->addContent('File: ' . basename($this->profile));
+         $this->response->addContent('Nodes: ' . count($profileData));
+         $this->response->addContent('Functions: ' . count($stats->symbolStats));
+         $this->response->addContent('Calls: ' . Formatter::count($stats->calls));
+-- 
+2.40.1
+
